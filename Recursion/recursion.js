@@ -89,3 +89,43 @@ const permute = (strArr, begin, end) => {
 const permuteArray = (strArr) => {
   permute(strArr, 0, strArr.lenght - 1);
 };
+
+
+//flatten object
+const flattenDictionary=(dic)=>{
+    let flattenedDictionary ={}
+    const flattenDictionaryHelper = (dic,propName)=>{
+        if(typeof dic !='object'){
+            flattenedDictionary[propName]=dic
+            return
+        }
+        for(let prop in dic){
+            if(propName == ""){
+                flattenDictionaryHelper(dic[prop], propName+prop)
+            }else{
+                flattenDictionaryHelper(dic[prop], propName+"."+prop)
+
+            }
+        }
+    }
+    flattenDictionaryHelper(dic,"")
+    return flattenedDictionary
+}
+
+
+//palindrome checker
+
+const isPalindromeRecursive=(word)=> {
+    return isPalindromeHelper(word, 0, word.length-1)
+}
+const isPalindromeHelper=(word, beginPos, endPos)=> { 
+    if (beginPos >= endPos) {
+    return true;
+    }
+    if (word.charAt(beginPos) != word.charAt(endPos)) { 
+        return false;
+    } else {
+    return isPalindromeHelper(word, beginPos + 1, endPos - 1);
+    }
+   }
+    
